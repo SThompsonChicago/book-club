@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+
 class Review extends Model { }
 
 Review.init(
@@ -23,10 +24,11 @@ Review.init(
         max: 5,
       },
     },
-    // date_created: {
-    //   type: DataTypes.NOW,
-    //   allowNull: false,
-    // },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Date.now,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
