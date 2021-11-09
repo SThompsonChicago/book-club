@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Make It Stick: The Science of Successful Learning",
+    "author": "Peter Brown",
+    "isbn": "978-0674729018",
+    "genre": "non-fiction"
+  },
+  {
+    "title": "Essential Scrum: A Practical Guide to the Most Popular Agile Process",
+    "author": "Kenneth Rubin",
+    "isbn": "978-0137043293",
+    "genre": "science fiction"
+  },
+  {
+    "title": "White Fragility: Why It's So Hard for White People to Talk About Racism",
+    "author": "Robin DiAngelo",
+    "isbn": "978-0807047415",
+    "genre": "non-fiction"
+  },
+  {
+    "title": "The Pragmatic Programmer: Your Journey To Mastery",
+    "author": "David Thomas",
+    "isbn": "978-0135957059",
+    "genre": "fiction"
+  }
+]
