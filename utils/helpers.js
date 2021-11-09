@@ -1,14 +1,6 @@
+const dayjs = require('dayjs');
+
 module.exports = {
-  get_emoji: () => {
-    const randomNum = Math.random();
-    let book = "📗";
+date_created: function (date) {return dayjs(new Date(date)).format('MM-DD-YYYY')}
 
-    if (randomNum > 0.7) {
-      book = "📘";
-    } else if (randomNum > 0.4) {
-      book = "📙";
-    }
-
-    return `<span for="img" aria-label="book">${book}</span>`;
-  },
 };
