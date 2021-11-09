@@ -29,6 +29,38 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// GET all reviews
+router.get('/', async (req, res) => {
+    try {
+        const reviewData = await Review.findAll({
+        });
+        res.status(200).json(reviewData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+// DELETE a review
+router.delete('/:id', async (req, res) => {
+    try {
+        const reviewData = await Review.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if (!reviewData) {
+            res.status(404).json({ message: 'Review not found.'});
+            return;
+        }
+
+        res.status(200).json(reviewData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 
 module.exports = router;
