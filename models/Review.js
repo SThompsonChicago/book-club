@@ -23,10 +23,10 @@ Review.init(
         max: 5,
       },
     },
-    date_created: {
-      type: DataTypes.NOW,
-      allowNull: false,
-    },
+    // date_created: {
+    //   type: DataTypes.NOW,
+    //   allowNull: false,
+    // },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -45,6 +45,7 @@ Review.init(
   {
     sequelize,
     timestamps: true,
+    freezeTableName: true,
     underscored: true,
     modelName: 'review',
   },

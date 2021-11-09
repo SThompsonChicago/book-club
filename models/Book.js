@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Book extends Model { }
+class Book extends Model {}
 
 Book.init(
   {
@@ -20,12 +20,8 @@ Book.init(
       allowNull: false,
     },
     isbn: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isNumeric: true,
-      },
     },
     genre: {
       type: DataTypes.STRING,
@@ -35,6 +31,7 @@ Book.init(
   {
     sequelize,
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
     modelName: 'book'
   },
