@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Book } = require('../../models');
+const { User, Book, Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // CREATE new book
@@ -22,7 +22,6 @@ router.post('/', withAuth, async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const bookData = await Book.findAll({
-            include: [{ model: Review }],
         });
         res.status(200).json(bookData);
     } catch (err) {
@@ -33,9 +32,7 @@ router.get('/', async (req, res) => {
 // GET particular book
 router.get('/id', async (req, res) => {
     try {
-        const bookData = await Book.findByPk(req.params.id, {
-            include: [{ model: Review }],
-        });
+        const bookData = await Book.findByPk(req.params.id);
 
         if (!bookData) {
             res.status(404).json({ message: 'Book not found.'});
