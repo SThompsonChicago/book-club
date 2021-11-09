@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET particular book
+// GET particular book by id
 router.get('/:id', async (req, res) => {
     try {
         const bookData = await Book.findByPk(req.params.id);
@@ -40,6 +40,3 @@ router.get('/:id', async (req, res) => {
 
 
 module.exports = router;
-
-
-
