@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS user_db;
-CREATE DATABASE user_db;
+DROP DATABASE IF EXISTS book_club_db;
+CREATE DATABASE book_club_db;
