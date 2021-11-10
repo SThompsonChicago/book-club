@@ -30,8 +30,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
+
+          {{#unless loggedin}}
+          <button class="log btn btn-primary text-white" type="button"><a href="/login">LOGIN</a></button>
+          {{/unless}}
+          {{#unless loggedout}}
           {{#if loggedin}}
-          <a class="nav-link" href="/logout" role="button" id="logout-link" aria-expanded="false">
+          <a class="nav-link" href="#" role="button" id="logout-link" aria-expanded="false">
+
             LOGOUT
           </a>
           {{else}}
@@ -74,7 +80,6 @@
     {{reviews}}
     {{{body}}}
   </main>
-
 <footer class="bg-dark text-white text-center text-lg-start">
   <div class="container p-4">
     <div class="row">
