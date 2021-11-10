@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/SThompsonChicago/book-club#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.2",
     "dayjs": "^1.10.7",
