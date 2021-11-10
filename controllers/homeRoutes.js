@@ -3,7 +3,7 @@ const { Review, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all reviews so they can be displayed on homepage
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const reviewData = await Review.findAll({
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    res.json(reviewData);
+    
 
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
+    console.log('You are logged in.');
     res.redirect('/');
     return;
   }
