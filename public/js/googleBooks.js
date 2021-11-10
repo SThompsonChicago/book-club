@@ -11,15 +11,14 @@ function googleBooksApi(bookToSearch) {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // let {title, authors, categories: genre} = data.items[1].volumeInfo;
-    // let isbn = data.items[1].volumeInfo.industryIdentifiers;
+    let {title, authors, categories: genre} = data.items[1].volumeInfo;
+    let isbn = data.items[1].volumeInfo.industryIdentifiers;
     // let title = data.items.volumeInfo.title;
     // let author = data.items.volumeInfo.authors;
     // let isbn = data.items.volumeInfo.industryIdentifiers[1];
     // let genre = data.items.volumeInfo.categories;
     //let image = items.volumeInfo.imageLinks.thumbnail;
     //let preview = items.volumeInfo.previewLink;
-    console.log(data);
     console.log(title, authors, isbn, genre)
   });
   //seedBookTable();
