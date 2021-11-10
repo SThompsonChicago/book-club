@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header  flex-row justify-space-between">
+    <h2>
+      <a href="/post/{{review.id}}">
+        <div class="col-8">{{review.reviewTitle}}</div>
+      </a>
+    </h2>
+    <div class="col-3">{{review.user.email}}
+    </div>
+  </div>  
+  <p class="card-body">
+   {{review.reviewContent}}
+  </p>
+</div>
+<input type="hidden" name="post-id" value="{{review.id}}"/>

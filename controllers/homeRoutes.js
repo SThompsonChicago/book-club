@@ -1,22 +1,30 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Review, User } = require('../models');
 const withAuth = require('../utils/auth');
 const axios = require('axios')
 
-// Prevent non logged in users from viewing the homepage
+// GET all reviews so they can be displayed on homepage
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    // Get all projects and JOIN with user data
+    const reviewData = await Review.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    
 
-    res.render('homepage', {
-      users,
-      // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
+    // Serialize data so the template can read it
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('homepage', { 
+      reviews, 
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -26,6 +34,7 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
+    console.log('You are logged in.');
     res.redirect('/');
     return;
   }

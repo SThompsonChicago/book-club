@@ -30,12 +30,17 @@
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
-          {{#unless loggedIn}}
+          {{#unless loggedn}}
           <button class="log btn btn-primary text-white" type="button"><a href="/login">LOGIN</a></button>
           {{/unless}}
+          {{#unless loggedout}}
+          {{#if loggedin}}
           <a class="nav-link" href="#" role="button" id="logout-link" aria-expanded="false">
             LOGOUT
           </a>
+          {{else}}
+          <button class=" btn btn-outline-info btn-sm px-4 me-sm-3" type="button"><a href="/login">LOGIN</a></button>
+          {{/if}}
           </li>
           <li class="nav-item">
             <a class="nav-link important-logo"></a>
@@ -53,6 +58,7 @@
       <h1 class="display-5 fw-bold text-white">Book Talk</h1>
       <div class="col-lg-6 mx-auto">
         <p class="fs-5 mb-4">Read a book, leave a thought</p>
+        <p class="fs-7 mb-6">You must log in to create a review.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/dashboard/new">➕ New Review</button>
         </div>
@@ -60,7 +66,7 @@
     </div>
   </div>
   <main class="col-auto">
-    {{date_created "Wed Nov 24 2021 00:00:00 GMT-0600 (Central Standard Time)"}}
+    {{reviews}}
     {{{body}}}
   </main>
 
@@ -68,10 +74,11 @@
     <a>Cameron McDougall,
       Kaileigh Bonaccorsi,
       and Steven Thompson</a>
+      {{date_created "Wed Nov 24 2021 00:00:00 GMT-0600 (Central Standard Time)"}}
   </footer>
 </body>
 
 </html>
 {{#if loggedIn}}
-<script src="/public/js/logout.js"></script>
+<script src="/js/logout.js"></script>
 {{/if}}
