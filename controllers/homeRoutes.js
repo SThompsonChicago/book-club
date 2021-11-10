@@ -2,51 +2,38 @@ const router = require('express').Router();
 const { Review, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Prevent non logged in users from viewing the homepage
+// GET all reviews so they can be displayed on homepage
 router.get('/', async (req, res) => {
   try {
+    // Get all projects and JOIN with user data
     const reviewData = await Review.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
     });
 
-    const users = reviewData.map((review) => review.get({ plain: true }));
+    res.json(reviewData);
 
-    res.render('homepage', {
-      users,
-      // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+    // Serialize data so the template can read it
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
 
-
-router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    // Find the user in the database using session id
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Review }],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('dashboard', {
-      ...user,
-      logged_in: true
+    // Pass serialized data and session flag into template
+    res.render('homepage', { 
+      reviews, 
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect('/');
     return;
   }
 
