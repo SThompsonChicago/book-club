@@ -73,6 +73,7 @@ router.post('/logout', (req, res) => {
     // Remove the session variables
     req.session.destroy(() => {
       res.status(204).end();
+      console.log('You are now logged out.')
     });
   } else {
     res.status(404).end();
