@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Review, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Prevent non logged in users from viewing the homepage
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const userData = await User.findAll({
+    const reviewData = await Review.findAll({
       attributes: { exclude: ['password'] },
       order: [['name', 'ASC']],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const users = reviewData.map((review) => review.get({ plain: true }));
 
     res.render('homepage', {
       users,
@@ -22,10 +22,31 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    // Find the user in the database using session id
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Review }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('dashboard', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
