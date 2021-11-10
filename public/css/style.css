@@ -1,6 +1,9 @@
 .booktlk {
     box-shadow: 20px 20px 20px #FC0;
 }
-.log {
-    color: white;
+
+.card-img-top{
+    object-fit: cover;
+    width: 400px;
+    height: 200px;
 }
