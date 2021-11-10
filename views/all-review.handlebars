@@ -4,10 +4,10 @@
   </div>
 </div>
 <br>
-{{#if posts.length}}
+{{#if review.length}}
 <div class="card flex-column">
-  {{#each posts as |post|}}
-  {{> editItem post}}
+  {{#each reviews as |review|}}
+  {{> editItem review}}
   {{/each}}
 </div>
 {{/if}}
