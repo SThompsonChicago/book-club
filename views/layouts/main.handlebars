@@ -30,14 +30,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
-          {{#unless loggedIn}}
-          <button class="log btn btn-primary text-white" type="button"><a href="/login">LOGIN</a></button>
-          {{/unless}}
-          {{#unless loggedout}}
+          {{#if loggedin}}
           <a class="nav-link" href="#" role="button" id="logout-link" aria-expanded="false">
             LOGOUT
           </a>
-          {{/unless}}
+          {{else}}
+          <button class=" btn btn-outline-info btn-sm px-4 me-sm-3" type="button"><a href="/login">LOGIN</a></button>
+          {{/if}}
           </li>
           <li class="nav-item">
             <a class="nav-link important-logo"></a>
@@ -55,6 +54,7 @@
       <h1 class="display-5 fw-bold text-white">Book Talk</h1>
       <div class="col-lg-6 mx-auto">
         <p class="fs-5 mb-4">Read a book, leave a thought</p>
+        <p class="fs-7 mb-6">You must log in to create a review.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/dashboard/new">➕ New Review</button>
         </div>
@@ -62,7 +62,7 @@
     </div>
   </div>
   <main class="col-auto">
-    
+    {{reviews}}
     {{{body}}}
   </main>
 
@@ -76,5 +76,5 @@
 
 </html>
 {{#if loggedIn}}
-<script src="/public/js/logout.js"></script>
+<script src="/js/logout.js"></script>
 {{/if}}
