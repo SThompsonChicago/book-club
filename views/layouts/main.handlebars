@@ -33,9 +33,11 @@
           {{#unless loggedIn}}
           <button class="log btn btn-primary text-white" type="button"><a href="/login">LOGIN</a></button>
           {{/unless}}
+          {{#unless loggedout}}
           <a class="nav-link" href="#" role="button" id="logout-link" aria-expanded="false">
             LOGOUT
           </a>
+          {{/unless}}
           </li>
           <li class="nav-item">
             <a class="nav-link important-logo"></a>
@@ -60,7 +62,7 @@
     </div>
   </div>
   <main class="col-auto">
-    {{date_created "Wed Nov 24 2021 00:00:00 GMT-0600 (Central Standard Time)"}}
+    
     {{{body}}}
   </main>
 
@@ -68,6 +70,7 @@
     <a>Cameron McDougall,
       Kaileigh Bonaccorsi,
       and Steven Thompson</a>
+      {{date_created "Wed Nov 24 2021 00:00:00 GMT-0600 (Central Standard Time)"}}
   </footer>
 </body>
 
