@@ -1,33 +1,35 @@
- <div class="booktlk bg-dark text-secondary px-4 py-5 text-center">
-    <div class="py-5">
-      <h1 class="display-5 fw-bold text-white">Book Talk</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">Read a book, leave a thought</p>
-        <p class="fs-7 mb-6">You must log in to create a review.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/book">➕ New Review</a>
-        </div>
-        <div>
-          <br>
-          <p class="fs-7 mb-6">Login Below</p>
-        </div>
+<div class="booktlk bg-dark text-secondary px-4 py-5 text-center">
+  <div class="py-5">
+    <h1 class="display-5 fw-bold text-white">Book Talk</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="fs-5 mb-4">Read a book, leave a thought</p>
+      <p class="fs-7 mb-6">Create a new review here.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/book">➕ New Review</a>
+      </div>
+      <div>
+        <br>
+        <p class="fs-7 mb-6">You are currently logged in.</p>
       </div>
     </div>
-  </div> 
-{{#each reviews as |review| }}
-<div class="card">
-  <div class="card-header">
-    <h3>{{review.title}}</h3>
-  </div>
-  <div class="card-header">
-    <h3>Book Reviewed: {{review.book.title}}</h3>
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{review.content}}</p>
-      <footer class="blockquote-footer">Rating: <cite title="Source Title">{{review.rating}}</cite></footer>
-      <div>{{format_created_date review.date_created}}</div>
-    </blockquote>
   </div>
 </div>
+
+<div></div>
+  <h1>
+    Past reviews:
+  </h1>
+{{#each reviews as |review| }}
+  <div class="card">
+    <div class="card-header">
+      <h3>{{review.title}}</h3>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{review.content}}</p>
+        <footer class="blockquote-footer">Rating:<cite title="Source Title">{{review.rating}}</cite></footer>
+      </blockquote>
+    </div>
+  </div>
 {{/each}}
+</div>
