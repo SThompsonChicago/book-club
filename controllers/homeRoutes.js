@@ -76,8 +76,8 @@ router.get('/new-review', withAuth, async (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/dashboard');
+  if (req.session.loggedin) {
+    res.redirect('/');
     return;
   }
 
