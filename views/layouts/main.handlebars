@@ -28,9 +28,9 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="/new-review">New Review</a>
           </li>
-          <button class="btn btn-outline-info btn-sm px-4 me-sm-3" href="/logout" type="button">
+          <button class="btn btn-outline-info btn-sm px-4 me-sm-3" id="logout">
             LOGOUT
           </button>
           <button class=" btn btn-outline-info btn-sm px-4 me-sm-3" type="button"><a href="/login">LOGIN</a></button>
@@ -53,7 +53,7 @@
         <p class="fs-5 mb-4">Read a book, leave a thought</p>
         <p class="fs-7 mb-6">You must log in to create a review.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/dashboard/new">➕ New Review</button>
+          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-review">➕ New Review</button>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
       <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase">Book Talk</h5>
         <p>
-          Book talk is a Northwestern student made website for reviewing books, and connecting with other book lovers.
+          Book talk is a Northwestern student made website for reviewing books, and connecting with other book lovers. <a href="/new-review">Click here to add a new review.</a>
         </p>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -93,6 +93,6 @@
 </body>
 
 </html>
-{{#if loggedIn}}
+{{#if logged_in}}
 <script src="/js/logout.js"></script>
 {{/if}}
