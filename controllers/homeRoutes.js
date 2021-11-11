@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review, User } = require('../models');
+const { Review, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 const axios = require('axios')
 
@@ -57,6 +57,26 @@ router.get('/test/:bookToSearch', async (req, res)=> {
     res.status(400).render('err', {err});
   }
 })
+
+router.get('/book', withAuth, async (req, res) => {
+  try {
+    // Get all books and JOIN with user data
+    const bookData = await Review.findAll();
+
+    
+
+    // Serialize data so the template can read it
+    const books = bookData.map((book) => book.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('book', { 
+      books, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/new-review', withAuth, async (req, res) => {
   try {
