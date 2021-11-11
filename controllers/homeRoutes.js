@@ -25,7 +25,7 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-
+    
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       reviews, 
@@ -83,7 +83,7 @@ router.get('/book', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new-review', withAuth, async (req, res) => {
+router.get('/book', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
