@@ -4,18 +4,18 @@ const { User, Review, Book } = require('../../models');
 // CREATE a review
 router.post('/', async (req, res) => {
     try {
-      const newReview = await Review.create({
-        ...req.body,
-        user_id: req.session.user_id,
-      });
-  
-      res.status(200).json(newReview);
-      console.log('Review posted.');
+        const newReview = await Review.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+
+        res.status(200).json(newReview);
+        console.log('Review posted.');
     } catch (err) {
-      res.status(400).json(err);
-      console.log('Review not posted.');
+        res.status(400).json(err);
+        console.log('Review not posted.');
     }
-  });
+});
 
 // GET a review
 router.get('/:id', async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
         });
 
         if (!reviewData) {
-            res.status(404).json({ message: 'Review not found.'});
+            res.status(404).json({ message: 'Review not found.' });
             return;
         }
 
@@ -56,7 +56,7 @@ router.get('/user/:id', async (req, res) => {
         });
 
         if (!reviewData) {
-            res.status(404).json({ message: 'User not found.'});
+            res.status(404).json({ message: 'User not found.' });
             return;
         }
 
@@ -71,21 +71,21 @@ router.get('/user/:id', async (req, res) => {
 // Edit a review
 router.put('/:id', async (req, res) => {
     const reviewData = await Review.update(
-      {
-        content: req.body.content,
-        rating: req.body.rating,
-        user_id: req.body.user_id,
-        book_id: req.body.book_id,
-      },
-      {
-        where: {
-          id: req.params.id,
+        {
+            content: req.body.content,
+            rating: req.body.rating,
+            user_id: req.body.user_id,
+            book_id: req.body.book_id,
         },
-      }
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
     );
-  
+
     return res.json(reviewData);
-  });
+});
 
 // DELETE a review
 router.delete('/:id', async (req, res) => {
@@ -97,7 +97,7 @@ router.delete('/:id', async (req, res) => {
         });
 
         if (!reviewData) {
-            res.status(404).json({ message: 'Review not found.'});
+            res.status(404).json({ message: 'Review not found.' });
             return;
         }
 
