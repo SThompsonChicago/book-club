@@ -96,6 +96,16 @@ router.get('/new-review', withAuth, async (req, res) => {
     }
 });
 
+
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
+});
+
 router.get('/new-review/:book_id', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -117,3 +127,4 @@ router.get('/new-review/:book_id', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+
