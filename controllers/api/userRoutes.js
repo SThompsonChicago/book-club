@@ -17,25 +17,28 @@ router.post('/', async (req, res) => {
 });
 
 // CREATE a new user
-router.post('/new', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    const userData = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+    const newUser = await User.create({
       email: req.body.email,
       password: req.body.password,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name
     });
 
     req.session.save(() => {
-      req.session.logged_in = true;
+      req.session.userId = newUser.id;
+      req.session.email = newUser.email;
+      req.session.first_name = newUser.first_name;
+      req.session.last_name = newUser.last_name;
+      req.session.loggedIn = true;
 
-      res.status(200).json(userData);
+      res.json(newUser);
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
-});
+}); 
 
 // GET all users
 router.get('/', async (req, res) => {
