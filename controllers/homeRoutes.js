@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review, User } = require('../models');
+const { Review, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all reviews so they can be displayed on homepage
@@ -41,17 +41,52 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/new-review', withAuth, async (req, res) => {
+// GET all books so they can be rendered on review page
+router.get('/book', withAuth, async (req, res) => {
+  try {
+    // Get all books and JOIN with user data
+    const bookData = await Review.findAll();
+
+    
+
+    // Serialize data so the template can read it
+    const books = bookData.map((book) => book.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('book', { 
+      books, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/login', (req, res) => {
+  // If a session exists, redirect the request to the homepage
+  if (req.session.logged_in) {
+    console.log('You are logged in.');
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+
+router.get('/new-review/:book_id', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Review }],
+      include: [{ model: Review}],
     });
 
     const user = userData.get({ plain: true });
+    const book_id = req.params.book_id;
 
     res.render('new-review', {
       ...user,
+      book_id,
       logged_in: true
     });
    } catch (err) {
