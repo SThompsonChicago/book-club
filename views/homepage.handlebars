@@ -1,16 +1,31 @@
-<!-- Loop over each object in the projects array -->
-{{#each reviews as |review| }}
+
+{{!-- <!-- Loop over each object in the reviews array -->
+
 <div>
   <div>
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      <p>{{review.title}}</p>
+      
     </h2>
   </div>
   <div>
     <p>
-      {{review.content}}
+      
     </p>
+  </div>
+</div> --}}
+
+
+{{#each reviews as |review| }}
+<div class="card">
+  <div class="card-header">
+    <p>{{review.title}}</p>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{review.content}}</p>
+      <footer class="blockquote-footer">Rating:<cite title="Source Title">{{review.rating}}</cite></footer>
+    </blockquote>
   </div>
 </div>
 {{/each}}
