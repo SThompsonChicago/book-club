@@ -28,15 +28,12 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="/new-review">New Review</a>
           </li>
-          {{#if loggedIn}}
-          <a class="nav-link" href="#" role="button" id="logout-link" aria-expanded="false">
+          <button class="btn btn-outline-info btn-sm px-4 me-sm-3" id="logout">
             LOGOUT
-          </a>
-          {{else}}
+          </button>
           <button class=" btn btn-outline-info btn-sm px-4 me-sm-3" type="button"><a href="/login">LOGIN</a></button>
-          {{/if}}
           </li>
           <li class="nav-item">
             <a class="nav-link important-logo"></a>
@@ -56,22 +53,12 @@
         <p class="fs-5 mb-4">Read a book, leave a thought</p>
         <p class="fs-7 mb-6">You must log in to create a review.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/dashboard/new">➕ New Review</button>
+          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-review">➕ New Review</button>
         </div>
       </div>
     </div>
   </div>
   <main class="col-auto">
-  <div class="card mb-3">
-  <img src="https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2020/02/25145253/Photo-by-Alfons-Morales-on-Unsplash-scaled.jpg" id="bookimg" class="card-img-top" alt="Bookshelf with many books filling it.">
-  <div class="card-body">
-    <h5 class="card-title">What we're all about.</h5>
-    <p class="card-text">Book talk's primary goal is to allow reading to become more social. We want to create a space where book clubs can fully
-      take place on the web. Where people can share their thoughts on specific texts and look for new books that they might be interested in.
-    </p>
-  </div>
-</div>
-    {{reviews}}
     {{{body}}}
   </main>
 <footer class="bg-dark text-white text-center text-lg-start">
@@ -80,7 +67,7 @@
       <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase">Book Talk</h5>
         <p>
-          Book talk is a Northwestern student made website for reviewing books, and connecting with other book lovers.
+          Book talk is a Northwestern student made website for reviewing books, and connecting with other book lovers. <a href="/new-review">Click here to add a new review.</a>
         </p>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -106,6 +93,6 @@
 </body>
 
 </html>
-{{#if loggedIn}}
+{{#if logged_in}}
 <script src="/js/logout.js"></script>
 {{/if}}

@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 // GET all reviews so they can be displayed on homepage
 router.get('/', withAuth, async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all reviews and JOIN with user data
     const reviewData = await Review.findAll({
       include: [
         {
@@ -39,6 +39,24 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/new-review', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Review }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('new-review', {
+      ...user,
+      logged_in: true
+    });
+   } catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 module.exports = router;
