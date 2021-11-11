@@ -20,21 +20,7 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-    /**
-     * NEED TO DO
-     * if our renderer is not transforming the date data properly to display on page (currently dispalying current timestamp-unwanted) then instead we can transform the data before entering it into the renderer.
-     * 2021-11-09 06:00 -> 11-09-2021
-     * 
-     * 
-     * function dateCreatedTransformer(date) {
-     * let formattedDate;
-     * let temp = date.split(' ') => ['2021-11-09', '06:00'];
-     * temp = temp[0] => '2021-11-09';
-     * let temp2 = temp.split('-') => ['2021', '11', '09'];
-     * formattedDate = `${temp2[1]}-${temp2[2]}-${temp[0]}`
-     * returns formattedDate;
-     * }
-     */
+    
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       reviews, 
@@ -92,7 +78,7 @@ router.get('/book', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new-review', withAuth, async (req, res) => {
+router.get('/book', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },

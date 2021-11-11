@@ -6,6 +6,6 @@ module.exports = {
   },
 
 format_created_date: (date) => {
-    
+  return date.toLocaleDateString();
   },
 };
