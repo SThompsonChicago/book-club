@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { Review, User, Book } = require('../models');
+const { Review, User } = require('../models');
 const withAuth = require('../utils/auth');
+const axios = require('axios')
 
 // GET all reviews so they can be displayed on homepage
 router.get('/', withAuth, async (req, res) => {
@@ -41,38 +42,39 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// GET all books so they can be rendered on review page
-router.get('/book', withAuth, async (req, res) => {
+router.get('/test', (req, res) => res.render('testRealm'))
+
+
+router.get('/test/:bookToSearch', async (req, res)=> {
+  let bookToSearch = req.params.bookToSearch;
   try {
-    // Get all books and JOIN with user data
-    const bookData = await Review.findAll();
+    const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookToSearch}&key=AIzaSyA-hqQjqpuIodg2ouHkE0ZWaQehBv4DCF8`);
+    console.log(response.data);
+    res.render('byTitle', {data: response.data});
+  
 
-    
+  } catch(err) {
+    res.status(400).render('err', {err});
+  }
+})
 
-    // Serialize data so the template can read it
-    const books = bookData.map((book) => book.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('book', { 
-      books, 
-      logged_in: req.session.logged_in 
+router.get('/new-review', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Review }],
     });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+
+    const user = userData.get({ plain: true });
+
+    res.render('new-review', {
+      ...user,
+      logged_in: true
+    });
+   } catch (err) {
+      res.status(500).json(err);
+    }
 });
-
-router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
-  if (req.session.logged_in) {
-    console.log('You are logged in.');
-    res.redirect('/');
-    return;
-  }
-
-  res.render('login');
-});
-
 
 router.get('/new-review/:book_id', withAuth, async (req, res) => {
   try {
