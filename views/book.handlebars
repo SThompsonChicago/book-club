@@ -1,0 +1,13 @@
+{{#each books as |book| }}
+<div class="card">
+  <div class="card-header">
+    <h3>Name: {{book.title}}</h3>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>Author: {{book.author}}</p>
+      <footer class="blockquote-footer">Genre: <cite title="Source Title">{{book.genre}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
+{{/each}}
