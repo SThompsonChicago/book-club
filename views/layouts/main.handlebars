@@ -33,31 +33,18 @@
           <button class="btn btn-outline-info btn-sm px-4 me-sm-3" id="logout">
             LOGOUT
           </button>
-          <button class="btn btn-outline-info btn-sm me-sm-3" type="button" href="/login">Login below</button>
           </li>
           <li class="nav-item">
             <a class="nav-link important-logo"></a>
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+          <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
         </form>
       </div>
     </div>
   </nav>
-  <div class="booktlk bg-dark text-secondary px-4 py-5 text-center">
-    <div class="py-5">
-      <h1 class="display-5 fw-bold text-white">Book Talk</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">Read a book, leave a thought</p>
-        <p class="fs-7 mb-6">You must log in to create a review.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-review">➕ New Review</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <main class="col-auto">
     {{{body}}}
   </main>
@@ -87,7 +74,7 @@
       </div>
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     Northwestern Fullstack Development Bootcamp 2021
-    {{date_created "Wed Nov 24 2021 00:00:00 GMT-0600 (Central Standard Time)"}}
+    {{format_date}}
   </div>
 </footer>
 </body>

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Review, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
+const axios = require('axios')
 
 // GET all reviews so they can be displayed on homepage
 router.get('/', withAuth, async (req, res) => {
@@ -41,6 +42,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+
 // GET all books so they can be rendered on review page
 router.get('/book', withAuth, async (req, res) => {
   try {
@@ -75,6 +77,24 @@ router.get('/login', (req, res) => {
 
 
 router.get('/new-review/:book_id', withAuth, async (req, res) => {
+
+router.get('/test', (req, res) => res.render('testRealm'))
+
+
+router.get('/test/:bookToSearch', async (req, res)=> {
+  let bookToSearch = req.params.bookToSearch;
+  try {
+    const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookToSearch}&key=AIzaSyA-hqQjqpuIodg2ouHkE0ZWaQehBv4DCF8`);
+    console.log(response.data);
+    res.render('byTitle', {data: response.data});
+  
+
+  } catch(err) {
+    res.status(400).render('err', {err});
+  }
+})
+router.get('/new-review', withAuth, async (req, res) => {
+
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
