@@ -11,8 +11,13 @@ router.get('/', withAuth, async (req, res) => {
       include: [
         {
           model: User,
+
           attributes: ['first_name', 'last_name'],
         },
+        {
+          model: Book,
+          attributes: ['title'],
+        }
       ],
     });
 
