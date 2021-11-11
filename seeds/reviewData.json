@@ -1,6 +1,5 @@
 [
   {
-    "title": "Catcher in the rye",
     "content": "BEST BOOK EVER",
     "rating": "5",
     "date_created": "11/09/2021",
@@ -8,7 +7,6 @@
     "book_id": "2"
   },
   {
-    "title": "Percy jackson",
     "content": "I didn't enjoy this book because...",
     "rating": "1",
     "date_created": "11/05/2021",
@@ -16,7 +14,6 @@
     "book_id": "4"
   },
   {
-    "title": "Hatchet",
     "content": "I liked... but not...",
     "rating": "3",
     "date_created": "09/09/2021",
@@ -24,7 +21,6 @@
     "book_id": "2"
   },
   {
-    "title": "harry potter",
     "content": "I really enjoyed...",
     "rating": "4",
     "date_created": "09/09/2021",
@@ -32,7 +28,6 @@
     "book_id": "2"
   },
   {
-    "title": "The Great Gatsby",
     "content": "NEVER READ THIS",
     "rating": "1",
     "date_created": "09/09/2021",
@@ -40,7 +35,6 @@
     "book_id": "1"
   },
   {
-    "title": "the turtle and the hare",
     "content": "This book made me question...",
     "rating": "3",
     "date_created": "09/09/2021",
