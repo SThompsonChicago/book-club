@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review, User } = require('../models');
+const { Review, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 const axios = require('axios')
 
@@ -11,8 +11,13 @@ router.get('/', withAuth, async (req, res) => {
       include: [
         {
           model: User,
+
           attributes: ['first_name', 'last_name'],
         },
+        {
+          model: Book,
+          attributes: ['title'],
+        }
       ],
     });
 
@@ -20,7 +25,7 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-
+    
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       reviews, 
@@ -57,7 +62,28 @@ router.get('/test/:bookToSearch', async (req, res)=> {
     res.status(400).render('err', {err});
   }
 })
-router.get('/new-review', withAuth, async (req, res) => {
+
+router.get('/book', withAuth, async (req, res) => {
+  try {
+    // Get all books and JOIN with user data
+    const bookData = await Review.findAll();
+
+    
+
+    // Serialize data so the template can read it
+    const books = bookData.map((book) => book.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('book', { 
+      books, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/book', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
@@ -75,6 +101,7 @@ router.get('/new-review', withAuth, async (req, res) => {
     }
 });
 
+
 router.get('/signup', (req, res) => {
   if (req.session.loggedin) {
     res.redirect('/');
@@ -84,4 +111,25 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+router.get('/new-review/:book_id', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Review}],
+    });
+
+    const user = userData.get({ plain: true });
+    const book_id = req.params.book_id;
+
+    res.render('new-review', {
+      ...user,
+      book_id,
+      logged_in: true
+    });
+   } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
 module.exports = router;
+

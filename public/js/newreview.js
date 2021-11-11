@@ -3,18 +3,18 @@ const newFormHandler = async (event) => {
   
     const title = document.querySelector('#review-name').value.trim();
     const content = document.querySelector('#review-content').value.trim();
-    const rating = document.querySelector('#review-rating').value.trim();
-    const bookId = document.querySelector('#review-book-id').value.trim();
+    const ratingInput = document.querySelector('#review-rating').value.trim();
+    const book_id = document.querySelector('#review-submit').getAttribute("data-book-id");
+      //$('#review-submit').attr('data-book-id')
 
-    console.log(`Inputs: ${title}, ${content}`);
+    console.log(`Inputs: ${title}, ${content}, ${ratingInput}, ${book_id}`);
   
-    if (title && content && rating && bookId) {
+    if (title && content && ratingInput && book_id) {
         alert('All review elements received by form.');
-        ratingInt = parseInt(rating);
-        bookIdInt = parseInt(bookId);
+        rating = parseInt(ratingInput);
       const response = await fetch(`/api/reviews`, {
         method: 'POST',
-        body: JSON.stringify({ title, content, ratingInt, bookIdInt }),
+        body: JSON.stringify({ title, content, rating, book_id }),
         headers: {
           'Content-Type': 'application/json',
         },
