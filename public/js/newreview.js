@@ -10,7 +10,6 @@ const newFormHandler = async (event) => {
   console.log(`Inputs: ${title}, ${content}, ${ratingInput}, ${book_id}`);
 
   if (title && content && ratingInput && book_id) {
-      alert('All review elements received by form.');
       rating = parseInt(ratingInput);
     const response = await fetch(`/api/reviews`, {
       method: 'POST',
