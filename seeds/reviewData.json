@@ -7,24 +7,10 @@
     "book_id": "2"
   },
   {
-    "content": "I didn't enjoy this book because...",
-    "rating": "1",
-    "date_created": "11/05/2021",
-    "user_id": "5",
-    "book_id": "4"
-  },
-  {
     "content": "I liked... but not...",
     "rating": "3",
     "date_created": "09/09/2021",
     "user_id": "3",
-    "book_id": "2"
-  },
-  {
-    "content": "I really enjoyed...",
-    "rating": "4",
-    "date_created": "09/09/2021",
-    "user_id": "2",
     "book_id": "2"
   },
   {
@@ -35,8 +21,8 @@
     "book_id": "1"
   },
   {
-    "content": "This book made me question...",
-    "rating": "3",
+    "content": "This book showed my how to apply dialectical reasoning in my daily life. It's very useful.",
+    "rating": "5",
     "date_created": "09/09/2021",
     "user_id": "3",
     "book_id": "3"

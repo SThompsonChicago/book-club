@@ -22,7 +22,14 @@
 {{#each reviews as |review| }}
   <div class="card">
     <div class="card-header">
+      <h3>Review of {{review.book.title}}</h3>
+    </div>
+        <div class="card-header">
       <h3>{{review.title}}</h3>
+    </div>
+        </div>
+        <div class="card-header">
+      <h6>Review by {{review.user.first_name}} {{review.user.last_name}}</h6>
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
