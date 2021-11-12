@@ -6,8 +6,6 @@ const signupFormHandler = async function(event) {
     const first_name = document.querySelector('#first_name-input-signup').value.trim();
     const last_name = document.querySelector('#last_name-input-signup').value.trim();
 
-    alert(`Recieved values ${email}, ${password}, ${first_name} and ${last_name}`);
-
     const response = await fetch('/api/users/signup', {
       method: 'POST',
       body: JSON.stringify({

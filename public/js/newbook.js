@@ -5,8 +5,6 @@ const bookFormHandler = async function(event) {
     const author = document.querySelector('#book-author').value.trim();
     const genre = document.querySelector('#book-genre').value.trim();
 
-    alert(`Recieved values ${title}, ${author} and ${genre}`);
-
     const response = await fetch('/api/books', {
       method: 'POST',
       body: JSON.stringify({
