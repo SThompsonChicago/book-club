@@ -66,7 +66,7 @@ router.get('/test/:bookToSearch', async (req, res)=> {
 router.get('/book', withAuth, async (req, res) => {
   try {
     // Get all books and JOIN with user data
-    const bookData = await Review.findAll();
+    const bookData = await Book.findAll();
 
     
 
@@ -130,6 +130,13 @@ router.get('/new-review/:book_id', withAuth, async (req, res) => {
       res.status(500).json(err);
     }
 });
+
+router.get('/newbook', (req, res) => {
+
+  res.render('newbook');
+});
+
+
 
 module.exports = router;
 

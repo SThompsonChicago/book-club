@@ -21,7 +21,7 @@ Book.init(
     },
     isbn: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     genre: {
       type: DataTypes.STRING,

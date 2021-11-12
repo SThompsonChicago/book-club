@@ -82,7 +82,7 @@ console.log('email passed')
       req.session.logged_in = true;
         //REMOVE COMPLETE USERDATA--only send what you need
         console.log('sending back success')
-      res.json({ user: userData, message: `Login status is ${req.session.logged_in} for user with id ${req.session.user_id}!`});
+      res.json({ message: `User is now logged in.`});
     });
 
   } catch (err) {
