@@ -5,11 +5,15 @@
         <p class="fs-5 mb-4">Read a book, leave a thought</p>
         <p class="fs-7 mb-6">You must login to create a review.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="#">➕ New Review</a>
+          {{#if logged_in}}
+          <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/book">➕ New Review</a>
+          {{else}}
+          <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="#login-form">➕ New Review</a>
+          {{/if}}
         </div>
         <div>
           <br>
-          <p class="fs-7 mb-6">Log in below</p>
+          <a type= 'button' class="fs-7 mb-6" href="#login-form">Log in</a>
         </div>
       </div>
     </div>
@@ -27,7 +31,7 @@
   <div class="card-header">
     LOGIN
   </div>
-  <form class="card-body login-form">
+  <form class="card-body login-form" id="login-form">
     <div class="card-body">
       <div class="form-group">
         <label class="form-label">Email:</label>
