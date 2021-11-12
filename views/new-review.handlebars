@@ -1,4 +1,3 @@
-
 <div class="booktlk bg-dark text-secondary px-4 py-5 text-center">
   <div class="py-5">
     <form class="card-body review-form">
@@ -17,12 +16,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Book id:</label>
-          <div>
-          <input class="form-input" type="number" id="review-book-id" />
-          </div>
-        </div>
-        <div class="form-group">
           <label class="form-label">Review:</label>
           <div>
           <textarea class="text-area" type="text" id="review-content" >
@@ -30,9 +23,9 @@
             </div>
         </div>
         <div class="form-group d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a type="submit" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="#">Submit</a>
-        </div>
+        <a href="#" id="review-submit" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" data-book-id={{book_id}} type="submit">Submit</a>
       </div>
+    </div>
     </div>
   </form>
   <br>
