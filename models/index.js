@@ -18,7 +18,4 @@ Book.hasMany(Review, {
   foreignKey: 'book_id',
 });
 
-
-
-
 module.exports = { User, Book, Review };
