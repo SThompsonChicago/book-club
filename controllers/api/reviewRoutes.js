@@ -2,21 +2,21 @@ const router = require('express').Router();
 const { User, Review, Book } = require('../../models');
 
 
-  // CREATE a review
-  router.post('/', async (req, res) => {
+// CREATE a review
+router.post('/', async (req, res) => {
     try {
-      const newReview = await Review.create({
-        ...req.body,
-        user_id: req.session.user_id
-      });
-  
-      res.status(200).json(newReview);
-      console.log('Review posted.');
+        const newReview = await Review.create({
+            ...req.body,
+            user_id: req.session.user_id
+        });
+
+        res.status(200).json(newReview);
+        console.log('Review posted.');
     } catch (err) {
-      res.status(400).json(err);
-      console.log('Review not posted.');
+        res.status(400).json(err);
+        console.log('Review not posted.');
     }
-  });
+});
 
 // GET a review
 router.get('/:id', async (req, res) => {
