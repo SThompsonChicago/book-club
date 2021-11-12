@@ -27,11 +27,9 @@ router.post('/signup', async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.userId = newUser.id;
+      req.session.user_id = newUser.id;
       req.session.email = newUser.email;
-      req.session.first_name = newUser.first_name;
-      req.session.last_name = newUser.last_name;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res.json(newUser);
     });
