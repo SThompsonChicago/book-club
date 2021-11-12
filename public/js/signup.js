@@ -3,23 +3,26 @@ const signupFormHandler = async function(event) {
   
     const email = document.querySelector('#email-input-signup').value.trim();
     const password = document.querySelector('#password-input-signup').value.trim();
-    console.log(email);
-    console.log(password);
-    const response = await fetch('/api/user', {
+    const first_name = document.querySelector('#first_name-input-signup').value.trim();
+    const last_name = document.querySelector('#last_name-input-signup').value.trim();
+
+    alert(`Recieved values ${email}, ${password}, ${first_name} and ${last_name}`);
+
+    const response = await fetch('/api/users/signup', {
       method: 'POST',
       body: JSON.stringify({
-        email, password
+        first_name, last_name, email, password
       }),
       headers: { 'Content-Type': 'application/json' },
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/');
     } else {
       alert('Failed to sign up');
     }
   };
   
   document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+    .querySelector('#signup-submit')
+    .addEventListener('click', signupFormHandler);
