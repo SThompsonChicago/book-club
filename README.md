@@ -20,9 +20,7 @@ Many technologies went into making this application function the way it does.
   *Sequelize
   *Mysql
 
-Some challenges faced were...
-
-A future goal we have for this application is to link it to GoogleBooks API, in the hopes of allowing a user to search for a book, which will then populate the database, and allow the user to review that book.
+A future goal we have for this application is to link it to GoogleBooks API in the hopes of allowing a user to search for a book, which will then populate the database, and allow the user to review that book.
 
 ## Contributors
 Cameron McDougall- https://github.com/CJMc0d3
