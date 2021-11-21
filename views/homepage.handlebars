@@ -3,13 +3,13 @@
     <h1 class="display-5 fw-bold text-white">Book Talk</h1>
     <div class="col-lg-6 mx-auto">
       <p class="fs-5 mb-4">Read a book, leave a thought</p>
-      <p class="fs-7 mb-6">Create a new review here.</p>
+      <p class="fs-7 mb-6">Review a book</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/book">➕ New Review</a>
       </div>
       <div>
         <br>
-        <p class="fs-7 mb-6">You are currently logged in.</p>
+        <p class="fs-7 mb-6">{{userData.first_name}} is currently logged in</p>
       </div>
     </div>
   </div>
@@ -37,6 +37,9 @@
     <footer class="blockquote-footer">Rating: <cite title="Source Title">{{review.rating}}</cite></footer>
   </blockquote>
   <div>{{format_created_date review.date_created}}</div>
+  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-comment">➕ Add comment</a>
+  </div>
 </div>
 </div>
 {{/each}}
