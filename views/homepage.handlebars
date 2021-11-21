@@ -9,38 +9,33 @@
       </div>
       <div>
         <br>
-        <p class="fs-7 mb-6">{{userData.first_name}} is currently logged in</p>
+        <p class="fs-7 mb-6">user {{userData.first_name}} is currently logged in</p>
       </div>
     </div>
   </div>
 </div>
 
-<div></div>
-<h1>
-  Past reviews:
-</h1>
-{{#each reviews as |review| }}
-<div class="card">
-  <div class="card-header">
-    <h3>Review of {{review.book.title}}</h3>
+<div>
+  <h2 class="past-reviews text-center fw-bold text-decoration-underline">Past reviews</h2>
+  <br>
+  {{#each reviews as |review| }}
+  <div class="card">
+    <div class="card-header">
+      <h4>Review of {{review.book.title}}</h4>
+      <h5>Author: {{review.book.author}}</h5>
+    </div>
+    <div class="card-body">
+      <h5>{{review.title}}</h5>
+      <blockquote class="blockquote mb-0">
+        <p>{{review.content}}</p>
+        <p>Rating: {{review.rating}}</p>
+        <footer class="blockquote-footer">Review by: <cite title="Source Title">{{review.user.first_name}}
+            {{review.user.last_name}} on {{format_created_date review.date_created}}</cite></footer>
+      </blockquote>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-comment">➕ Add comment</a>
+      </div>
+    </div>
   </div>
-  <div class="card-header">
-    <h3>{{review.title}}</h3>
-  </div>
-</div>
-<div class="card-header">
-  <h6>Review by {{review.user.first_name}} {{review.user.last_name}}</h6>
-</div>
-<div class="card-body">
-  <blockquote class="blockquote mb-0">
-    <p>{{review.content}}</p>
-    <footer class="blockquote-footer">Rating: <cite title="Source Title">{{review.rating}}</cite></footer>
-  </blockquote>
-  <div>{{format_created_date review.date_created}}</div>
-  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-    <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="/new-comment">➕ Add comment</a>
-  </div>
-</div>
-</div>
-{{/each}}
+  {{/each}}
 </div>

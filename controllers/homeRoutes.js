@@ -16,20 +16,20 @@ router.get('/', withAuth, async (req, res) => {
         },
         {
           model: Book,
-          attributes: ['title'],
+          attributes: ['title', 'author'],
         }
       ],
     });
 
-    
+
 
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-    
+
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      reviews, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      reviews,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -50,16 +50,16 @@ router.get('/login', (req, res) => {
 router.get('/test', (req, res) => res.render('testRealm'))
 
 
-router.get('/test/:bookToSearch', async (req, res)=> {
+router.get('/test/:bookToSearch', async (req, res) => {
   let bookToSearch = req.params.bookToSearch;
   try {
     const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookToSearch}&key=AIzaSyA-hqQjqpuIodg2ouHkE0ZWaQehBv4DCF8`);
     console.log(response.data);
-    res.render('byTitle', {data: response.data});
-  
+    res.render('byTitle', { data: response.data });
 
-  } catch(err) {
-    res.status(400).render('err', {err});
+
+  } catch (err) {
+    res.status(400).render('err', { err });
   }
 })
 
@@ -68,15 +68,15 @@ router.get('/book', withAuth, async (req, res) => {
     // Get all books and JOIN with user data
     const bookData = await Book.findAll();
 
-    
+
 
     // Serialize data so the template can read it
     const books = bookData.map((book) => book.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('book', { 
-      books, 
-      logged_in: req.session.logged_in 
+    res.render('book', {
+      books,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -96,9 +96,9 @@ router.get('/book', withAuth, async (req, res) => {
       ...user,
       logged_in: true
     });
-   } catch (err) {
-      res.status(500).json(err);
-    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
@@ -115,7 +115,7 @@ router.get('/new-review/:book_id', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Review}],
+      include: [{ model: Review }],
     });
 
     const user = userData.get({ plain: true });
@@ -126,9 +126,9 @@ router.get('/new-review/:book_id', withAuth, async (req, res) => {
       book_id,
       logged_in: true
     });
-   } catch (err) {
-      res.status(500).json(err);
-    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get('/newbook', (req, res) => {
