@@ -1,0 +1,14 @@
+[
+  {
+    "comment": "I agree with you because...",
+    "date_created": "11/13/2021",
+    "user_id": "1",
+    "review_id": "2"
+  },
+  {
+    "comment": "That's interesting because...",
+    "date_created": "10/04/2021",
+    "user_id": "2",
+    "review_id": "3"
+  }
+]
