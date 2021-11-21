@@ -1,3 +1,5 @@
+const loginForm = document.querySelector('#login-form');
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -25,3 +27,11 @@ const loginFormHandler = async (event) => {
 document
   .querySelector('#login-submit')
   .addEventListener('click', loginFormHandler);
+
+loginForm
+  .addEventListener('keyup', function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById('login-submit').click();
+    }
+  });
