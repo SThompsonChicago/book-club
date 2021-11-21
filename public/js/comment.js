@@ -1,9 +1,26 @@
-// add comment form handler
-// add comment variable and queryselector
-// add review id variable
-// add if (comment)
-  //const response fetch post
-  //if okay, refresh
-  //else alert
+const commentFormHandler = async (event) => {
+  event.preventDefault();
 
-//add document, query and event listener
+  const comment = document.querySelector('#comment-comment').value.trim();
+
+  if (comment) {
+    const response = await fetch('/api/comment', {
+      method: 'POST',
+      body: JSON.stringify({ comment }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    if (response.ok) {
+      document.location.refresh();
+    } else {
+      alert('Failed to create comment');
+    }
+  } else {
+    alert('Comment not submitted');
+  }
+};
+
+document
+.querySelector('#comment-submit')
+.addEventListener('click', commentFormHandler);
