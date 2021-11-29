@@ -5,12 +5,12 @@ const newFormHandler = async (event) => {
   const content = document.querySelector('#review-content').value.trim();
   const ratingInput = document.querySelector('#review-rating').value.trim();
   const book_id = document.querySelector('#review-submit').getAttribute("data-book-id");
-    //$('#review-submit').attr('data-book-id')
+  //$('#review-submit').attr('data-book-id')
 
   console.log(`Inputs: ${title}, ${content}, ${ratingInput}, ${book_id}`);
 
   if (title && content && ratingInput && book_id) {
-      rating = parseInt(ratingInput);
+    rating = parseInt(ratingInput);
     const response = await fetch(`/api/reviews`, {
       method: 'POST',
       body: JSON.stringify({ title, content, rating, book_id }),
@@ -25,12 +25,11 @@ const newFormHandler = async (event) => {
       alert('Failed to create review');
     }
   } else {
-      alert('Review not submitted.');
+    alert('Review not submitted.');
   }
 };
 
 document
-.querySelector('#review-submit')
-.addEventListener('click', newFormHandler);
+  .querySelector('#review-submit')
+  .addEventListener('click', newFormHandler);
 
-  

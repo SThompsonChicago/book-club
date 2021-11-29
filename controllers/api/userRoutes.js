@@ -1,15 +1,19 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
-
+    const userData = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+    });
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.status(200).json(userData);
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
   } catch (err) {
     res.status(400).json(err);
@@ -17,38 +21,41 @@ router.post('/', async (req, res) => {
 });
 
 // CREATE a new user
-router.post('/signup', async (req, res) => {
-  try {
-    const newUser = await User.create({
-      email: req.body.email,
-      password: req.body.password,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name
-    });
+// router.post('/signup', async (req, res) => {
+//   try {
+//     console.log('api signup hit')
 
-    req.session.save(() => {
-      req.session.user_id = newUser.id;
-      req.session.email = newUser.email;
-      req.session.logged_in = true;
+//     const newUser = await User.create({
+//       email: req.body.email,
+//       password: req.body.password,
+//       first_name: req.body.first_name,
+//       last_name: req.body.last_name,
+//     });
 
-      res.json(newUser);
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-}); 
+//     // set up sessions with a 'logged_in' variable set to 'true'
+//     req.session.save(() => {
+//       req.session.logged_in = true;
+
+//       res.status(200).json(newUser);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // GET all users
 router.get('/', async (req, res) => {
   try {
-      const userData = await User.findAll({
-      });
-      res.status(200).json(userData);
+    const userData = await User.findAll({
+    });
+    res.status(200).json(userData);
   } catch (err) {
-      res.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 
+//user login
 router.post('/login', async (req, res) => {
   try {
     console.log('api login hit')
@@ -62,7 +69,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-console.log('email passed')
+    console.log('email passed')
     // Verify the posted password with the password store in the database
     const validPassword = await userData.checkPassword(req.body.password);
 
@@ -77,16 +84,16 @@ console.log('email passed')
 
     // Create session variables based on the logged in user
     req.session.save(() => {
-      console.log('session saved iniated')
+      console.log('session save iniated')
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-        //REMOVE COMPLETE USERDATA--only send what you need
-        console.log('sending back success')
-      res.json({ message: `User is now logged in.`});
+      //REMOVE COMPLETE USERDATA--only send what you need
+      console.log('sending back success')
+      res.json({ user: userData, message: `User is now logged in.` });
     });
 
   } catch (err) {
-    console.log('theres been an error')
+    console.log('there\'s been an error')
     res.status(400).json(err);
   }
 });

@@ -1,0 +1,22 @@
+<div class="booktlk bg-dark text-secondary px-4 py-5 text-center">
+  <div class="py-5">
+    <form class="card-body comment-form">
+      <div class="card-body">
+        <div class="form-group">
+          <h3>Write a new comment:</h3>
+          <label class="form-label">Comment:</label>
+          <div>
+            <textarea class="text-area" type="text" id="comment-comment">
+            </textarea>
+          </div>
+          <div class="form-group d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="#" id="comment-submit" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
+              data-review-id={{review_id}} type="submit">Submit</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/newcomment.js"></script>
